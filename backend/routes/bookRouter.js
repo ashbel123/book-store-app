@@ -7,10 +7,13 @@ router.get("/get", bookController.getBooks);
 
 router.post("/add", bookController.postBook);
 
+router.get("/get/filter/", bookController.filterBooks);
+
 router.get("/get/:id", bookController.getBook);
 
 router.put("/update/:id", bookController.updateBook);
 
 router.delete("/delete/:id", bookController.deleteBook);
+
 module.exports= router;
   

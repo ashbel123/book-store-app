@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { MdOutlineAddBox } from "react-icons/md";
 import BooksTable from "../components/home/BooksTable";
 import BooksCard from "../components/home/BooksCard";
+import { TbFilterSearch } from "react-icons/tb";
 
 const HomePage = () => {
   console.log("home");
@@ -43,6 +44,9 @@ const HomePage = () => {
       </div>
       <div className="flex justify-between items-center">
         <h1 className="text-3xl my-8">Books List</h1>
+        <Link to="/books/filter">
+        <TbFilterSearch className="text-sky-800 text-4xl"/>
+        </Link>
         <Link to="/books/create">
           <MdOutlineAddBox className="text-sky-800 text-4xl" />
         </Link>

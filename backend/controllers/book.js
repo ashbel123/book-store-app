@@ -106,4 +106,34 @@ const deleteBook = async(req, res) => {
       return res.status(500).send({ message: err.message });
     })
 }
-module.exports= { getBooks, postBook,getBook,updateBook,deleteBook };
+
+const filterBooks = async (req, res) => {
+  try {
+    const filter = {};
+
+    for (const key in req.query) {
+      if (req.query.hasOwnProperty(key) && req.query[key]) {
+        filter[key] = req.query[key];
+      }
+    }
+    if (Object.keys(filter).length === 0) {
+      console.log("No filter criteria provided");
+      return res.status(400).send("Please provide filter criteria");
+    }
+
+    console.log(filter);
+    const filteredObjects = await Book.find(filter);
+
+    if (filteredObjects.length === 0) {
+      console.log("No books found");
+      return res.status(200).send("No records found for your filters");
+    }
+
+    return res.status(200).send(filteredObjects);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(err.message);
+  }
+};
+
+module.exports= { getBooks, postBook,getBook,updateBook,deleteBook,filterBooks   };
